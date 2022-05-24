@@ -1,0 +1,7 @@
+name = "ComplexStepDerivative"
+uuid = "c2cd8a4e-bacf-4ed8-9bb0-05ab0fd0a3ae"
+authors = ["Jonnie Diegelman <jonnie.diegelman@flyzipline.com>"]
+version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
