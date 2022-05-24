@@ -7,6 +7,7 @@
     - Download Julia v1.7.2 [here](https://julialang.org/downloads/)
     - Add [Julia to PATH](https://julialang.org/downloads/platform/#optional_add_julia_to_path) if setup doesn’t do that automatically
     - Test that Julia is added to PATH by opening a new terminal and entering `julia`
+    - Follow [these instructions](https://github.com/ZiplineTeam/julia_packages#adding-the-internal-registry) to add our internal package registry
 - Set up VSCode
     - Download VSCode [here](https://julialang.org/downloads/)
-    - Open the Extensions tab on the left, search for the “Julia” extension, and click “install”
+    - Open the Extensions tab on the left, search for and install the “Julia” extension
