@@ -1,0 +1,4 @@
+name = "CruiseControl"
+uuid = "6351a759-7bf0-498e-80c9-154a1851970c"
+authors = ["Jonnie Diegelman <jonnie.diegelman@flyzipline.com>"]
+version = "0.1.0"
