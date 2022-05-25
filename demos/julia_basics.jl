@@ -187,3 +187,18 @@ end
 tree = Tree(20.0, 1.0)
 tree.height = 25.0
 tree
+
+
+## Plotting
+using Plots
+plotly()
+
+t = 0:0.01:50
+x = sin.(t) .+ randn(length(t))
+plot(t, x; label="x")
+
+n = 100
+x̄ = [sum(x[i-n:i])/n for i in 1+n:length(x)]
+plot!(t[1+n:end], x̄; label="x̄")
+
+plot!(t, sin; label="sin(x)")
