@@ -1,12 +1,17 @@
 using LinearAlgebra
+using Unitful: u, km, m, s, hr
 
 import Base: +, -
 
 
 ## Point in 2D space
-struct Point2D
-    x::Float64
-    y::Float64
+struct Point2D{L}
+    x::L
+    y::L
+end
+function Point2D(x::X, y::Y) where {X,Y}
+    L = promote_type(X, Y)
+    return Point2D(L(x), L(y))
 end
 
 +(p1::Point2D, p2::Point2D) = Point2D(p1.x + p2.x, p1.y + p2.y)
@@ -20,18 +25,18 @@ LinearAlgebra.norm(p::Point2D) = sqrt(p.x^2 + p.y^2)
 ## Roads
 abstract type Road end
 
-struct DirtRoad <: Road
+struct DirtRoad{L} <: Road
     roughness::Float64
-    waypoints::Vector{Point2D}
+    waypoints::Vector{Point2D{L}}
 end
 
-struct ConcreteRoad <: Road
-    waypoints::Vector{Point2D}
+struct ConcreteRoad{L} <: Road
+    waypoints::Vector{Point2D{L}}
 end
 
-struct NoRoad <: Road
-    start_point::Point2D
-    stop_point::Point2D
+struct NoRoad{L} <: Road
+    start_point::Point2D{L}
+    stop_point::Point2D{L}
 end
 
 
@@ -40,20 +45,20 @@ abstract type Vehicle end
 abstract type GroundVehicle end
 abstract type AirVehicle end
 
-struct Car <: GroundVehicle
-    speed::Float64
+struct Car{V} <: GroundVehicle
+    speed::V
 end
 
-struct Motorcycle <: GroundVehicle
-    speed::Float64
+struct Motorcycle{V} <: GroundVehicle
+    speed::V
 end
 
-struct Plane <: AirVehicle
-    airspeed::Float64
+struct Plane{V} <: AirVehicle
+    airspeed::V
 end
 
-struct Helicopter <: AirVehicle
-    airspeed::Float64
+struct Helicopter{V} <: AirVehicle
+    airspeed::V
 end
 
 
@@ -77,7 +82,7 @@ ground_distance(point1, point2) = norm(point1 - point2)
 ground_distance(no_road::NoRoad) = ground_distance(waypoints(no_road)...)
 function ground_distance(road::Road)
     points = waypoints(road)
-    total = 0.0
+    total = zero(points[1].x)
     last_point = points[1]
     for point in points
         total += ground_distance(last_point, point)
@@ -98,9 +103,9 @@ travel_time(vehicle::AirVehicle, road, weather) = air_distance(road) / speed(veh
 
 
 ## Make vehicles
-points = [Point2D(x, rand()*100) for x in 0:10_000]
-travel_time(
-    Car(25),
+points = [Point2D(x, rand()*500m) for x in (0:0.01:10)km]
+t = travel_time(
+    Car(25m/s),
     # Plane(20),
 
     # DirtRoad(0.3, points),
@@ -109,3 +114,4 @@ travel_time(
     # NoRain(),
     Rain(),
 )
+hr.(t)
