@@ -98,10 +98,14 @@ travel_time(vehicle::AirVehicle, road, weather) = air_distance(road) / speed(veh
 
 
 ## Make vehicles
+points = [Point2D(x, rand()*100) for x in 0:10_000]
 travel_time(
     Car(25),
-    # Plane(25),
-    # DirtRoad(0.3, [Point2D(x, rand()*1000) for x in 0:10_000]),
-    ConcreteRoad([Point2D(x, rand()*100) for x in 0:10_000]),
-    NoRain(),
+    # Plane(20),
+
+    # DirtRoad(0.3, points),
+    ConcreteRoad(points),
+
+    # NoRain(),
+    Rain(),
 )
