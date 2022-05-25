@@ -1,6 +1,5 @@
 ## Basic Types
 # Numbers
-1 + 2
 1 + 2.0
 1//3 + 5//12
 (1//2 + 5im) * (2//3)im
@@ -171,3 +170,20 @@ whats_this(x::Real) = println("$x is a real number!")
 whats_this("hello")
 whats_this(3)
 whats_this(3 + im)
+
+
+## Structs
+struct Person
+    height::Float64
+    weight::Float64
+end
+person = Person(1.7, 70.0)
+person.height = 1.8
+
+mutable struct Tree
+    height::Float64
+    width::Float64
+end
+tree = Tree(20.0, 1.0)
+tree.height = 25.0
+tree
