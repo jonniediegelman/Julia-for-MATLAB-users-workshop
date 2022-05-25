@@ -198,12 +198,7 @@ tree
 using Plots
 plotly()
 
-t = 0:0.01:50
-x = sin.(t) .+ randn(length(t))
-plot(t, x; label="x")
+plot(rand(20))
+plot!(rand(20) .+ 1)
+plot!(rand(20, 4) .+ (2:5)')
 
-n = 100
-x̄ = [sum(x[i-n:i])/n for i in 1+n:length(x)]
-plot!(t[1+n:end], x̄; label="x̄")
-
-plot!(t, sin; label="sin(x)")
