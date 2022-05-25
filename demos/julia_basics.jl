@@ -74,6 +74,11 @@ dict["some key"]
 dict["some key"] = 20
 dict["some key"]
 
+# Ranges
+big_ol_range = 1:1_000_000_000_000_000
+big_ol_range[100:200]
+big_ol_range * 5
+
 
 ## Loops and control flow
 # Loops and conditionals
