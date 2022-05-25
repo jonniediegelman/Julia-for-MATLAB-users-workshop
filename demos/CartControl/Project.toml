@@ -1,0 +1,7 @@
+name = "CartControl"
+uuid = "6351a759-7bf0-498e-80c9-154a1851970c"
+authors = ["Jonnie Diegelman <jonnie.diegelman@flyzipline.com>"]
+version = "0.1.0"
+
+[deps]
+Modeling = "c8af38a5-121b-47ee-92fa-788b2a928e3f"
