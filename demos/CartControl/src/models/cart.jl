@@ -1,5 +1,5 @@
 Base.@kwdef struct CartParams
-    mass = 1500.0
+    mass::Float64 = 1500.0
     max_accel::Float64 = 10.0
 end
 
